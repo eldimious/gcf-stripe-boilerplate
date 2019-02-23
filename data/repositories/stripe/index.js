@@ -1,7 +1,7 @@
 const stripe = require('stripe');
 const { stripe: stripeConfig } = require('../../../configuration');
 
-const client = stripe(stripeConfig);
+const client = stripe(stripeConfig.secretKey);
 
 
 const getFieldsToUpdateCharge = ({
