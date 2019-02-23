@@ -53,3 +53,10 @@ This layer is being used in the exported GCF and depends on the domain layer (se
 ## Entry point ##
 
 The entry point for the applications is the index.js file, where we specify all google cloud functions that we will deploy.
+
+# Quick start #
+
+### Prerequisites ###
+
+Create an .env.yaml file in project root to register the following required environment variable(we need the Stripe secret key):
+  - `STRIPE_SECRET_KEY: "xxxxxxxxxxxx"`
