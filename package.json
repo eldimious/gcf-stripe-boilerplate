@@ -15,5 +15,25 @@
   "bugs": {
     "url": "https://github.com/eldimious/gcf-stripe/issues"
   },
-  "homepage": "https://github.com/eldimious/gcf-stripe#readme"
+  "homepage": "https://github.com/eldimious/gcf-stripe#readme",
+  "dependencies": {
+    "@google-cloud/logging-winston": "0.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "stripe": "^6.25.1",
+    "throw-http-errors": "^2.0.0",
+    "validator": "^10.11.0",
+    "winston": "2.4.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^6.0.1",
+    "sinon": "^7.2.4",
+    "supertest": "^3.4.2"
+  }
 }
