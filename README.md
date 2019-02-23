@@ -40,16 +40,16 @@ The code style being used is based on the airbnb js style guide.
 
 ## Data Layer ##
 
-The data layer is implemented using repositories, that hide the underlying data sources (database, network, cache, etc), and provides an abstraction over them so other parts of the application that make use of the repositories, don't care about the origin of the data and are decoupled from the specific implementations used, like the Mongoose ORM that is used by this app. Furthermore, the repositories are responsible to map the entities they fetch from the data sources to the models used in the applications. This is important to enable the decoupling.
+The data layer is implemented using repositories, that hide the underlying data sources (BaaS, database, network, cache, etc), and provides an abstraction over them so other parts of the application that make use of the repositories, don't care about the origin of the data and are decoupled from the specific implementations used. Here, we use Stripe as a BaaS provider for both creating customers and payments and exporsure methods.This is important to enable the decoupling.
 
 ## Domain Layer ##
 
-The domain layer is implemented using services. They depend on the repositories to get the app models and apply the business rules on them. They are not coupled to a specific database implementation and can be reused if we add more data sources to the app or even if we change the database for example from MongoDB to Couchbase Server.
+The domain layer is implemented using services. They depend on the repositories to get the exported methods and apply the *business rules* on them. They are not coupled to a specific BaaS implementation and can be reused if we change our Baas client from Stripe to another platform.
 
 ## Routes/Controller Layer ##
 
-This layer is being used in the express app and depends on the domain layer (services). Here we define the routes that can be called from outside. The services are always used as the last middleware on the routes and we must not rely on res.locals from express to get data from previous middlewares. That means that the middlewares registered before should not alter data being passed to the domain layer. They are only allowed to act upon the data without modification, like for example validating the data and skipping calling next().
+This layer is being used in the exported GCF and depends on the domain layer (services). Here we define the middleware where we specify some validation rules for the requests.
 
 ## Entry point ##
 
-The entry point for the applications is the server.js file. It does not depend on express.js or other node.js frameworks. It is responsible for instantiating the application layers, connecting to the db and  mounting the http server to the specified port.
+The entry point for the applications is the index.js file, where we specify all google cloud functions that we will deploy.
