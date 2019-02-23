@@ -17,13 +17,11 @@
   },
   "homepage": "https://github.com/eldimious/gcf-stripe#readme",
   "dependencies": {
-    "@google-cloud/logging-winston": "0.9.0",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "stripe": "^6.25.1",
     "throw-http-errors": "^2.0.0",
-    "validator": "^10.11.0",
-    "winston": "2.4.3"
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
