@@ -1,0 +1,19 @@
+{
+  "name": "gcf-stripe",
+  "version": "1.0.0",
+  "description": "Boilerplate for stripe as faas using gcloud functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldimious/gcf-stripe.git"
+  },
+  "author": "Dimos Botsaris <botsaris.d@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eldimious/gcf-stripe/issues"
+  },
+  "homepage": "https://github.com/eldimious/gcf-stripe#readme"
+}
