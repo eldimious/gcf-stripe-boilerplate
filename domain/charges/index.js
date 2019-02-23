@@ -9,4 +9,4 @@ function init(stripeInterface) {
 }
 
 
-module.exports = init;
+module.exports.init = init;
