@@ -60,3 +60,17 @@ The entry point for the applications is the index.js file, where we specify all 
 
 Create an .env.yaml file in project root to register the following required environment variable(we need the Stripe secret key):
   - `STRIPE_SECRET_KEY: "xxxxxxxxxxxx"`
+
+### Deployment ###
+
+In order to deploy your functions to gcloud just use gcloud cli, e.g. in order to deploy `chargeCustomer` use this cmd:
+
+```shell
+  gcloud config set project PROJECT_ID && gcloud functions deploy chargeCustomer --trigger-http --env-vars-file .env.yaml --runtime nodejs8
+```
+
+where `--env-vars-file .env.yaml` flag reads and sets the env vars from your.env.yaml as function's scope.
+
+For more info about enviroment variables in gcf you can take a look at this [link](https://cloud.google.com/functions/docs/env-var#using_environment_variables)
+
+Also you can take a look how we deploy a gcf at this [link](https://cloud.google.com/sdk/gcloud/reference/functions/deploy)
