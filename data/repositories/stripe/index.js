@@ -3,45 +3,14 @@ const { stripe: stripeConfig } = require('../../../configuration');
 
 const client = stripe(stripeConfig);
 
-const handleStripeApiErrors = (error) => {
-  switch (error.type) {
-    case 'StripeCardError':
-      // A declined card error
-      throw error;
-    case 'StripeInvalidRequestError':
-      // Invalid parameters were supplied to Stripe's API
-      throw error;
-    case 'StripeAPIError':
-      // An error occurred internally with Stripe's API
-      throw error;
-    case 'StripeConnectionError':
-      // Some kind of error occurred during the HTTPS communication
-      throw error;
-    case 'StripeAuthenticationError':
-      // You probably used an incorrect API key
-      throw error;
-    case 'StripeRateLimitError':
-      // Too many requests hit the API too quickly
-      throw error;
-    default:
-      throw error;
-  }
-};
-
 
 const getFieldsToUpdateCharge = ({
   customer,
   description,
-}) => {
-  const fields = {};
-  if (customer) {
-    fields.customer = customer;
-  }
-  if (description) {
-    fields.description = description;
-  }
-  return fields;
-};
+}) => ({
+  ...(customer && { customer }),
+  ...(description && { description }),
+});
 
 
 const getFieldsToListCharges = ({
@@ -49,22 +18,12 @@ const getFieldsToListCharges = ({
   customer,
   limit,
   source,
-}) => {
-  const fields = {};
-  if (customer) {
-    fields.customer = customer;
-  }
-  if (created) {
-    fields.created = created;
-  }
-  if (limit) {
-    fields.limit = limit;
-  }
-  if (source) {
-    fields.source = source;
-  }
-  return fields;
-};
+}) => ({
+  ...(created && { created }),
+  ...(customer && { customer }),
+  ...(limit && { limit }),
+  ...(source && { source }),
+});
 
 
 const removeUndefinedValues = (obj) => {
@@ -205,6 +164,5 @@ const paymentsInterface = {
 function init() {
   return Object.assign(Object.create(paymentsInterface));
 }
-
 
 module.exports.init = init;
