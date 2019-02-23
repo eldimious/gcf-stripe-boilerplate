@@ -1,0 +1,27 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+.DS_Store
+pids
+logs
+results
+
+npm-debug.log
+node_modules
+.idea/
+.vscode 
+
+# dotenv environment variables file
+.env
+.env.yaml
+.env-dev.yaml
+.env-stage.yaml
+.env-prod.yaml
+*.pdf
+*.xlsx
