@@ -20,7 +20,7 @@ exports.createCharge = function createCharge(req, res) {
           amount: req.body.amount,
           currency: req.body.currency,
           receipt_email: req.body.receipt_email,
-          customer: req.body.customer,
+          customer: req.body.customerId,
           capture: req.body.capture || true,
           description: req.body.description,
           metadata: req.body.metadata,
@@ -57,7 +57,7 @@ exports.getCustomer = function getCustomer(req, res) {
       try {
         validator.checkReqGetMethod(req, res);
         validator.requireValidParamsForGetCustomer(req, res);
-        const response = await customersServices.get(req.query.stipeCustomerId);
+        const response = await customersServices.get(req.query.customerId);
         return res.status(200).send(response);
       } catch (error) {
         return errorHandler(res, error);
@@ -72,7 +72,7 @@ exports.removeCustomer = function removeCustomer(req, res) {
       try {
         validator.checkReqDeleteMethod(req, res);
         validator.requireValidParamsForGetCustomer(req, res);
-        const response = await customersServices.remove(req.query.stipeCustomerId);
+        const response = await customersServices.remove(req.query.customerId);
         return res.status(200).send(response);
       } catch (error) {
         return errorHandler(res, error);
