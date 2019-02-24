@@ -63,10 +63,10 @@ Create an .env.yaml file in project root to register the following required envi
 
 ### Deployment ###
 
-In order to deploy your functions to gcloud just use gcloud cli, e.g. in order to deploy `chargeCustomer` use this cmd:
+In order to deploy your functions to gcloud just use gcloud cli, e.g. in order to deploy `createCharge` use this cmd:
 
 ```shell
-  gcloud config set project PROJECT_ID && gcloud functions deploy chargeCustomer --trigger-http --env-vars-file .env.yaml --runtime nodejs8
+  gcloud config set project PROJECT_ID && gcloud functions deploy createCharge --trigger-http --env-vars-file .env.yaml --runtime nodejs8
 ```
 
 where `--env-vars-file .env.yaml` flag reads and sets the env vars from your.env.yaml as function's scope.
@@ -74,3 +74,17 @@ where `--env-vars-file .env.yaml` flag reads and sets the env vars from your.env
 For more info about enviroment variables in gcf you can take a look at this [link](https://cloud.google.com/functions/docs/env-var#using_environment_variables)
 
 Also you can take a look how we deploy a gcf at this [link](https://cloud.google.com/sdk/gcloud/reference/functions/deploy)
+
+### Usage ###
+
+After you deploy the function in google cloud, you can use them by a HTTP request to their URL. E.g. to trigger `createCharge` gcf we should:
+
+```shell
+curl "https://REGION-PROJECT_ID.cloudfunctions.net/createCharge"
+```
+
+where:
+
+  - REGION is the region where your function is deployed. This is visible in your terminal when your function finishes deploying.
+  
+  - PROJECT_ID is your Cloud project ID. This is visible in your terminal when your function finishes deploying.
