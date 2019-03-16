@@ -57,7 +57,7 @@ exports.getCustomer = async function getCustomer(req, res) {
   return cors(req, res, async() => {
     try {
       validator.checkReqGetMethod(req, res);
-      validator.requireValidParamsForGetCustomer(req, res);
+      validator.requireValidParamsToGetCustomer(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await customersServices.get(req.query.customerId);
@@ -72,7 +72,7 @@ exports.removeCustomer = async function removeCustomer(req, res) {
   return cors(req, res, async() => {
     try {
       validator.checkReqDeleteMethod(req, res);
-      validator.requireValidParamsForGetCustomer(req, res);
+      validator.requireValidParamsToGetCustomer(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await customersServices.remove(req.query.customerId);

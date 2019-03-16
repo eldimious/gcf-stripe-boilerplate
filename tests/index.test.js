@@ -157,4 +157,96 @@ describe('test exported methods', () => {
       await expect(methods.createCustomer(req, res)).to.eventually.be.fulfilled;
     });
   });
+  describe('test getCustomer method', () => {
+    it('should return wrong request method', async () => {
+      req.method = 'POST';
+      expect(typeof(methods.getCustomer)).to.eql('function');
+      await methods.getCustomer(req, res);
+      expect(res.code).to.eql(405);
+      expect(res.message.data.message).to.eql('Only GET methods supported');
+    });
+    it('should return missing customerId error', async () => {
+      req.method = 'GET';
+      expect(typeof(methods.getCustomer)).to.eql('function');
+      await methods.getCustomer(req, res);
+      expect(res.code).to.eql(400);
+      expect(res.message.data.message).to.eql('Customer id not provided. Make sure you have a "customerId" property in your request query params.');
+    });
+    it('should return missing ApiKey', async () => {
+      req.method = 'GET';
+      req.query = {
+        customerId: 'test1',
+      };
+      expect(typeof(methods.getCustomer)).to.eql('function');
+      await methods.getCustomer(req, res);
+      expect(res.code).to.eql(401);
+      expect(res.message.data.message).to.eql('API key not provided. Make sure you have a "api-key" as header.');
+    });
+    it('should return missing ApiKey', async () => {
+      req.method = 'GET';
+      req.headers['api-key'] = 'test';
+      req.query = {
+        customerId: 'test1',
+      };
+      expect(typeof(methods.getCustomer)).to.eql('function');
+      await methods.getCustomer(req, res);
+      expect(res.code).to.eql(401);
+      expect(res.message.data.message).to.eql('API key not provided. Make sure you have a "api-key" as header.');
+    });
+    it('should return success', async () => {
+      req.method = 'GET';
+      req.headers['api-key'] = apiKey;
+      req.query = {
+        customerId: 'test1',
+      };
+      expect(typeof(methods.getCustomer)).to.eql('function');
+      await expect(methods.getCustomer(req, res)).to.eventually.be.fulfilled;
+    });
+  });
+  describe('test removeCustomer method', () => {
+    it('should return wrong request method', async () => {
+      req.method = 'POST';
+      expect(typeof(methods.removeCustomer)).to.eql('function');
+      await methods.removeCustomer(req, res);
+      expect(res.code).to.eql(405);
+      expect(res.message.data.message).to.eql('Only DELETE methods supported');
+    });
+    it('should return missing customerId error', async () => {
+      req.method = 'DELETE';
+      expect(typeof(methods.removeCustomer)).to.eql('function');
+      await methods.removeCustomer(req, res);
+      expect(res.code).to.eql(400);
+      expect(res.message.data.message).to.eql('Customer id not provided. Make sure you have a "customerId" property in your request query params.');
+    });
+    it('should return missing ApiKey', async () => {
+      req.method = 'DELETE';
+      req.query = {
+        customerId: 'test1',
+      };
+      expect(typeof(methods.removeCustomer)).to.eql('function');
+      await methods.removeCustomer(req, res);
+      expect(res.code).to.eql(401);
+      expect(res.message.data.message).to.eql('API key not provided. Make sure you have a "api-key" as header.');
+    });
+    it('should return missing ApiKey', async () => {
+      req.method = 'DELETE';
+      req.headers['api-key'] = 'test';
+      req.query = {
+        customerId: 'test1',
+      };
+      expect(typeof(methods.removeCustomer)).to.eql('function');
+      await methods.removeCustomer(req, res);
+      expect(res.code).to.eql(401);
+      expect(res.message.data.message).to.eql('API key not provided. Make sure you have a "api-key" as header.');
+    });
+    it('should return success', async () => {
+      req.method = 'DELETE';
+      req.headers['api-key'] = apiKey;
+      req.query = {
+        customerId: 'test1',
+      };
+      expect(typeof(methods.removeCustomer)).to.eql('function');
+      await expect(methods.removeCustomer(req, res)).to.eventually.be.fulfilled;
+    });
+  });
 });

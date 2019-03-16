@@ -64,10 +64,10 @@ const requestValidator = {
     }
   },
 
-  requireValidParamsForGetCustomer(req) {
+  requireValidParamsToGetCustomer(req) {
     try {
       if (!req.query.customerId) {
-        throw new errors.BadRequest('customerId in query params required.');
+        throw new errors.BadRequest('Customer id not provided. Make sure you have a "customerId" property in your request query params.');
       }
       return undefined;
     } catch (error) {
