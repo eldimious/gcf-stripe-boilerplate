@@ -5,8 +5,9 @@ const methods = require('../index.js');
 const { mockRequest, mockResponse } = require('./data');
 const {
   apiKey,
+  stripe: { secretKey },
 } = require('../configuration');
-
+console.log(secretKey)
 chai.use(chaiAsPromised);
 const {
   expect,
@@ -59,6 +60,42 @@ describe('test exported methods', () => {
       await methods.createCharge(req, res);
       expect(res.code).to.eql(400);
       expect(res.message.data.message).to.eql('Currency not provided. Make sure you have a "currency" property in your request body.');
+    });
+    it('should return missing ApiKey', async () => {
+      req.method = 'POST';
+      req.body = {
+        customerId: 'test',
+        amount: '10',
+        currency: 'EUR',
+      };
+      expect(typeof(methods.createCharge)).to.eql('function');
+      await methods.createCharge(req, res);
+      expect(res.code).to.eql(401);
+      expect(res.message.data.message).to.eql('API key not provided. Make sure you have a "api-key" as header.');
+    });
+    it('should return missing ApiKey', async () => {
+      req.method = 'POST';
+      req.headers['api-key'] = 'test';
+      req.body = {
+        customerId: 'test',
+        amount: '10',
+        currency: 'EUR',
+      };
+      expect(typeof(methods.createCharge)).to.eql('function');
+      await methods.createCharge(req, res);
+      expect(res.code).to.eql(401);
+      expect(res.message.data.message).to.eql('API key not provided. Make sure you have a "api-key" as header.');
+    });
+    it('should return success', async () => {
+      req.method = 'POST';
+      req.headers['api-key'] = apiKey;
+      req.body = {
+        customerId: 'test',
+        amount: '10',
+        currency: 'EUR',
+      };
+      expect(typeof(methods.createCharge)).to.eql('function');
+      await expect(methods.createCharge(req, res)).to.eventually.be.fulfilled;
     });
   });
 
