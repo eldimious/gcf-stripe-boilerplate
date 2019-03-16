@@ -1,5 +1,8 @@
 # Serverless Payments with Stripe and Google Cloud Functions as FaaS.
 
+
+[![Build Status](https://travis-ci.org/eldimious/gcf-stripe-boilerplate.svg?branch=master)](https://travis-ci.org/eldimious/gcf-stripe-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/eldimious/gcf-stripe-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/eldimious/gcf-stripe-boilerplate?branch=master)
+
 When we say “serverless”, it doesn’t mean servers are no longer involved. It means that you no longer need to think about them.
 Serverless is an approach that aims to eliminate the need to manage infrastructure by:
 
