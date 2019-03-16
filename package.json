@@ -4,7 +4,10 @@
   "description": "Boilerplate for stripe as faas using gcloud functions",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test --recursive --timeout 15000"
+    "coverage": "nyc report --reporter=html | coveralls",
+    "precoveralls": "npm run coverage",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test": "nyc mocha tests --recursive --timeout 15000 --exit"
   },
   "repository": {
     "type": "git",
@@ -25,12 +28,14 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "mocha": "^6.0.1",
+    "nyc": "^13.3.0",
     "sinon": "^7.2.4",
     "supertest": "^3.4.2"
   }
