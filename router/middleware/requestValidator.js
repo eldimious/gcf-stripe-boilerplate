@@ -36,14 +36,14 @@ const requestValidator = {
     }
   },
 
-  requireValidParamsForChargeCustomer(req) {
+  requireValidParamsToCreateCharge(req) {
     try {
       if (!req.body.customerId) {
-        throw new errors.BadRequest('customerId in body required.');
+        throw new errors.BadRequest('Customer Id not provided. Make sure you have a "customerId" property in your request body.');
       } else if (!req.body.amount || (req.body.amount && !validator.isDecimal(req.body.amount))) {
-        throw new errors.BadRequest('amount in body required.');
+        throw new errors.BadRequest('Amount not provided. Make sure you have a "amount" property in your request body.');
       } else if (!req.body.currency) {
-        throw new errors.BadRequest('add a supported currency.');
+        throw new errors.BadRequest('Currency not provided. Make sure you have a "currency" property in your request body.');
       }
       return undefined;
     } catch (error) {
@@ -51,12 +51,12 @@ const requestValidator = {
     }
   },
 
-  requireValidParamsForCreateCustomer(req) {
+  requireValidParamsToCreateCustomer(req) {
     try {
       if (!req.body.email || (req.body.email && !validator.isEmail(req.body.email))) {
-        throw new errors.BadRequest('amount in body required.');
+        throw new errors.BadRequest('Email not provided. Make sure you have a "email" property in your request body.');
       } else if (!req.body.stripeToken) {
-        throw new errors.BadRequest('stripeToken in body required.');
+        throw new errors.BadRequest('StripeToken not provided. Make sure you have a "stripeToken" property in your request body.');
       }
       return undefined;
     } catch (error) {
@@ -64,10 +64,10 @@ const requestValidator = {
     }
   },
 
-  requireValidParamsForGetCustomer(req) {
+  requireValidParamsToGetCustomer(req) {
     try {
       if (!req.query.customerId) {
-        throw new errors.BadRequest('customerId in query params required.');
+        throw new errors.BadRequest('Customer id not provided. Make sure you have a "customerId" property in your request query params.');
       }
       return undefined;
     } catch (error) {

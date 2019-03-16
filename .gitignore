@@ -25,3 +25,8 @@ node_modules
 .env-prod.yaml
 *.pdf
 *.xlsx
+
+# Coverage directory used by tools like istanbul
+coverage
+.nyc_output/
+.coveralls.yml
