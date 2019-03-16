@@ -61,8 +61,11 @@ The entry point for the applications is the index.js file, where we specify all 
 
 ### Prerequisites ###
 
-Create an .env.yaml file in project root to register the following required environment variable(we need the Stripe secret key):
+Create an .env.yaml file in project root to register the following required environment variable(we need the Stripe secret key, and a custom api key):
   - `STRIPE_SECRET_KEY: "xxxxxxxxxxxx"`
+  - `API_KEY: "xxxxxxxxxxxx"`
+
+In order to secure HTTP endpoints we will send as header: `header[api-key]` our own custom **API-KEY**.
 
 ### Deployment ###
 
