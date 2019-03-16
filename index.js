@@ -15,7 +15,7 @@ exports.createCharge = function createCharge(req, res) {
     (async () => {
       try {
         validator.checkReqPostMethod(req, res);
-        validator.requireValidParamsForChargeCustomer(req, res);
+        validator.requireValidParamsToCreateCharge(req, res);
         const response = await chargesServices.create({
           amount: req.body.amount,
           currency: req.body.currency,
