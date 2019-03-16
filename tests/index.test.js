@@ -2,12 +2,12 @@ require('dotenv').config();
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const methods = require('../index.js');
-const { mockRequest, mockResponse } = require('./data');
+const { mockRequest, mockResponse } = require('./mockedData');
 const {
   apiKey,
   stripe: { secretKey },
 } = require('../configuration');
-console.log(secretKey)
+
 chai.use(chaiAsPromised);
 const {
   expect,
