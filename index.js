@@ -39,7 +39,7 @@ exports.createCustomer = async function createCustomer(req, res) {
   return cors(req, res, async() => {
     try {
       validator.checkReqPostMethod(req, res);
-      validator.requireValidParamsForCreateCustomer(req, res);
+      validator.requireValidParamsToCreateCustomer(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await customersServices.create({

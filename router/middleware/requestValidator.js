@@ -51,12 +51,12 @@ const requestValidator = {
     }
   },
 
-  requireValidParamsForCreateCustomer(req) {
+  requireValidParamsToCreateCustomer(req) {
     try {
       if (!req.body.email || (req.body.email && !validator.isEmail(req.body.email))) {
-        throw new errors.BadRequest('amount in body required.');
+        throw new errors.BadRequest('Email not provided. Make sure you have a "email" property in your request body.');
       } else if (!req.body.stripeToken) {
-        throw new errors.BadRequest('stripeToken in body required.');
+        throw new errors.BadRequest('StripeToken not provided. Make sure you have a "stripeToken" property in your request body.');
       }
       return undefined;
     } catch (error) {
