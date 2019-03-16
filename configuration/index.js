@@ -9,6 +9,7 @@ const config = {
   stripe: {
     secretKey: process.env.STRIPE_SECRET_KEY,
   },
+  apiKey: process.env.API_KEY,
 };
 
 module.exports = config;
