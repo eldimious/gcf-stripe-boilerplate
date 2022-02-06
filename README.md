@@ -94,3 +94,11 @@ where:
   - REGION is the region where your function is deployed. This is visible in your terminal when your function finishes deploying.
   
   - PROJECT_ID is your Cloud project ID. This is visible in your terminal when your function finishes deploying.
+
+## Support Me
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y797KCA)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
