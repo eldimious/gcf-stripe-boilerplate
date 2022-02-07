@@ -13,10 +13,10 @@ const chargesServices = chargesServicesModule.init(stripeInterface);
 const customersServices = customersServicesModule.init(stripeInterface);
 
 exports.createCharge = async function createCharge(req, res) {
-  return cors(req, res, async() => {
+  return cors(req, res, async () => {
     try {
-      validator.checkReqPostMethod(req, res);
-      validator.requireValidParamsToCreateCharge(req, res);
+      validator.isPostMethod(req, res);
+      validator.validateCreateChargeBody(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await chargesServices.create({
@@ -36,10 +36,10 @@ exports.createCharge = async function createCharge(req, res) {
 };
 
 exports.createCustomer = async function createCustomer(req, res) {
-  return cors(req, res, async() => {
+  return cors(req, res, async () => {
     try {
-      validator.checkReqPostMethod(req, res);
-      validator.requireValidParamsToCreateCustomer(req, res);
+      validator.isPostMethod(req, res);
+      validator.validateCreateCustomerBody(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await customersServices.create({
@@ -54,10 +54,10 @@ exports.createCustomer = async function createCustomer(req, res) {
 };
 
 exports.getCustomer = async function getCustomer(req, res) {
-  return cors(req, res, async() => {
+  return cors(req, res, async () => {
     try {
-      validator.checkReqGetMethod(req, res);
-      validator.requireValidParamsToGetCustomer(req, res);
+      validator.isGetMethod(req, res);
+      validator.validateGetCustomerQuery(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await customersServices.get(req.query.customerId);
@@ -69,10 +69,10 @@ exports.getCustomer = async function getCustomer(req, res) {
 };
 
 exports.removeCustomer = async function removeCustomer(req, res) {
-  return cors(req, res, async() => {
+  return cors(req, res, async () => {
     try {
-      validator.checkReqDeleteMethod(req, res);
-      validator.requireValidParamsToGetCustomer(req, res);
+      validator.isDeleteMethod(req, res);
+      validator.validateGetCustomerQuery(req, res);
       authentication.checkApiKey(req);
       authentication.checkStripeKey(req);
       const response = await customersServices.remove(req.query.customerId);

@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
+/* eslint-disable prefer-object-spread */
 const stripe = require('stripe');
 const { stripe: stripeConfig } = require('../../../configuration');
 
 const client = stripe(stripeConfig.secretKey);
-
 
 const getFieldsToUpdateCharge = ({
   customer,
@@ -11,7 +12,6 @@ const getFieldsToUpdateCharge = ({
   ...(customer && { customer }),
   ...(description && { description }),
 });
-
 
 const getFieldsToListCharges = ({
   created,
@@ -25,13 +25,11 @@ const getFieldsToListCharges = ({
   ...(source && { source }),
 });
 
-
 const removeUndefinedValues = (obj) => {
   const updatedObj = Object.assign({}, obj);
-  Object.keys(updatedObj).forEach(key => (!updatedObj[key]) && delete updatedObj[key]);
+  Object.keys(updatedObj).forEach((key) => (!updatedObj[key]) && delete updatedObj[key]);
   return updatedObj;
 };
-
 
 const paymentsInterface = {
   charges: {

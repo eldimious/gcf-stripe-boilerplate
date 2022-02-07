@@ -1,13 +1,12 @@
 const errors = require('../../common/errors');
 
-const createResponseError = err => ({
+const createResponseError = (err) => ({
   status: err.status,
   data: {
     code: err.code,
     message: err.message,
   },
 });
-
 
 const errorHandler = function errorHandler(res, err) {
   if (errors.isCustomError(err)) {
@@ -17,6 +16,5 @@ const errorHandler = function errorHandler(res, err) {
   const internalError = new errors.InternalServerError(msg);
   return res.status(internalError.status).send(createResponseError(internalError));
 };
-
 
 module.exports = errorHandler;

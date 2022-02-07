@@ -4,7 +4,6 @@
 */
 require('dotenv').config();
 
-
 const config = {
   stripe: {
     secretKey: process.env.STRIPE_SECRET_KEY,
