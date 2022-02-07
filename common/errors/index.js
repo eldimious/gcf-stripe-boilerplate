@@ -1,3 +1,4 @@
+/* eslint-disable prefer-object-spread */
 const httpErrors = require('throw-http-errors');
 
 const isCustomError = (error) => {

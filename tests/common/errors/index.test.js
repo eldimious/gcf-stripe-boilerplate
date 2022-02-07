@@ -1,10 +1,8 @@
 const chai = require('chai');
 const errors = require('../../../common/errors');
 
-const {
-  expect,
-} = chai;
-console.log('httpErrors', errors)
+const { expect } = chai;
+
 describe('test exported error methods', () => {
   describe('test isCustomError method', () => {
     it('should return false', async () => {
@@ -16,6 +14,7 @@ describe('test exported error methods', () => {
       expect(errors.isCustomError(new errors.InternalServerError('test'))).to.be.true;
     });
   });
+
   describe('test custom errors', () => {
     it('should return InternalServerError error constructor', async () => {
       expect(typeof(errors.InternalServerError)).to.eql('function');
